@@ -9,14 +9,61 @@
     android:padding="20dp">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/current_temperature"/>
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/current_temperature"
+      android:textSize="24sp" />
 
     <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="14 °C / 39 °F"/>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/current_wind_speed"
+      android:textSize="24sp" />
+
+    <TextView
+      android:id="@+id/wind_speed"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="1.03 MPH"/>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/std_deviation"
+      android:textSize="24sp" />
+
+    <TextView
+      android:id="@+id/deviation"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="14 °C" />
+
+    <ImageView
+      android:id="@+id/cloud_icon"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="50dp"
+      android:scaleType="fitXY"
+      android:scaleX="3"
+      android:scaleY="3"
+      android:src="@drawable/ic_cloud_black_24dp"
+      android:visibility="invisible"
+      tools:visibility="visible"/>
+
+    <Button
+      android:id="@+id/deviation_button"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_marginTop="100dp"
+      android:layout_weight="0"
+      android:text="@string/std_deviation" />
+
 
 </LinearLayout>
