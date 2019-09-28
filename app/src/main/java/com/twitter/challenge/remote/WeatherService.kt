@@ -1,6 +1,7 @@
 package com.twitter.challenge.remote
 
 import com.twitter.challenge.model.WeatherResponse
+import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -15,7 +16,7 @@ interface WeatherService {
   fun getCurrentWeather() : Single<WeatherResponse>
 
   @GET("future_{day}.json")
-  fun getFutureWeather(@Path(value = "day") day:Int) : Single<WeatherResponse>
+  fun getFutureWeather(@Path(value = "day") day:Int) : Observable<WeatherResponse>
 
   companion object {
     private val baseUrl = "https://twitter-code-challenge.s3.amazonaws.com/"

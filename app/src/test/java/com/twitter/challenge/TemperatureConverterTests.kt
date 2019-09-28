@@ -1,6 +1,5 @@
 package com.twitter.challenge
 
-import org.assertj.core.data.Offset
 import org.junit.Test
 
 import org.assertj.core.api.Java6Assertions.assertThat
@@ -16,12 +15,12 @@ class TemperatureConverterTests {
   fun testCelsiusToFahrenheitConversion() {
     val precision = within(0.01f)
 
-    assertThat(TemperatureConverter.celsiusToFahrenheit(-50f)).isEqualTo(-58f, precision)
-    assertThat(TemperatureConverter.celsiusToFahrenheit(0f)).isEqualTo(32f, precision)
-    assertThat(TemperatureConverter.celsiusToFahrenheit(10f)).isEqualTo(50f, precision)
-    assertThat(TemperatureConverter.celsiusToFahrenheit(21.11f)).isEqualTo(70f, precision)
-    assertThat(TemperatureConverter.celsiusToFahrenheit(37.78f)).isEqualTo(100f, precision)
-    assertThat(TemperatureConverter.celsiusToFahrenheit(100f)).isEqualTo(212f, precision)
-    assertThat(TemperatureConverter.celsiusToFahrenheit(1000f)).isEqualTo(1832f, precision)
+    assertThat(TemperatureUtils.celsiusToFahrenheit(-50f)).isEqualTo(-58f, precision)
+    assertThat(TemperatureUtils.celsiusToFahrenheit(0f)).isEqualTo(32f, precision)
+    assertThat(TemperatureUtils.celsiusToFahrenheit(10f)).isEqualTo(50f, precision)
+    assertThat(TemperatureUtils.celsiusToFahrenheit(21.11f)).isEqualTo(70f, precision)
+    assertThat(TemperatureUtils.celsiusToFahrenheit(37.78f)).isEqualTo(100f, precision)
+    assertThat(TemperatureUtils.celsiusToFahrenheit(100f)).isEqualTo(212f, precision)
+    assertThat(TemperatureUtils.celsiusToFahrenheit(1000f)).isEqualTo(1832f, precision)
   }
 }

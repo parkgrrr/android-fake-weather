@@ -7,5 +7,5 @@ sealed class Status {
   class Loading : Status()
   data class Error(val error: String) : Status()
   data class Success(val data : WeatherResponse) : Status()
-  data class ButtonSuccess(val data : String) : Status()
+  data class ButtonSuccess(val data : Double) : Status()
 }
