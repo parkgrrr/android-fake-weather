@@ -15,9 +15,9 @@ class MainViewModel : ViewModel() {
 
   private val weatherApi by lazy { WeatherService.create() }
   private val disposables = CompositeDisposable()
-  private var weatherResponse : WeatherResponse? = null
-  private var standardDev : Double? = null
-  val status : MutableLiveData<Status> = MutableLiveData()
+  private var weatherResponse: WeatherResponse? = null
+  private var standardDev: Double? = null
+  val status: MutableLiveData<Status> = MutableLiveData()
 
   fun init() {
     getCurrentWeather()
@@ -36,7 +36,7 @@ class MainViewModel : ViewModel() {
 
   private fun checkForStandardDev() {
     // not ideal, but check if standard dev is caches in memory as well
-    standardDev?.let {stdDev -> status.postValue(Status.ButtonSuccess(stdDev)) }
+    standardDev?.let { stdDev -> status.postValue(Status.ButtonSuccess(stdDev)) }
   }
 
   fun getStandardDeviation() {
@@ -54,10 +54,10 @@ class MainViewModel : ViewModel() {
         .getCurrentWeather()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .doOnSubscribe {status.value = Status.Loading() }
-        .subscribe (
-            {response -> status.value = Status.Success(response); weatherResponse = response },
-            {error -> status.value = Status.Error(error.message ?: "")}
+        .doOnSubscribe { status.value = Status.Loading() }
+        .subscribe(
+            { response -> status.value = Status.Success(response); weatherResponse = response },
+            { error -> status.value = Status.Error(error.message ?: "") }
         )
     disposables.add(disposable)
   }
@@ -74,27 +74,27 @@ class MainViewModel : ViewModel() {
         .mergeWith(weatherApi.getFutureWeather(5))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread(), true)
-        .doOnSubscribe {status.value = Status.Loading() }
-        .subscribe (
-            { response -> responses.add(response)},
-            {error -> status.value = Status.Error(error.message ?: "")},
-            { val tempSDev = getStandardDeviation(responses)
+        .doOnSubscribe { status.value = Status.Loading() }
+        .subscribe(
+            { response -> responses.add(response) },
+            { error -> status.value = Status.Error(error.message ?: "") },
+            {
+              val tempSDev = getStandardDeviation(responses)
               status.value = Status.ButtonSuccess(tempSDev)
               standardDev = tempSDev
-              }
+            }
         )
 
     disposables.add(disposable)
   }
 
-  private fun getStandardDeviation(responses: MutableSet<WeatherResponse>) : Double {
+  private fun getStandardDeviation(responses: MutableSet<WeatherResponse>): Double {
     val doubleArray = DoubleArray(5)
     for (response in responses.withIndex()) {
       doubleArray[response.index] = response.value.weather.temp
     }
     return findStandardDeviation(doubleArray)
   }
-
 
 
   override fun onCleared() {

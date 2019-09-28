@@ -4,39 +4,39 @@ import com.google.gson.annotations.SerializedName
 
 
 data class WeatherResponse(
-    val coord : Coord,
-    val weather : Weather,
-    val wind : Wind,
-    val rain : Rain,
-    val clouds : Clouds,
-    val name : String
+    val coord: Coord,
+    val weather: Weather,
+    val wind: Wind,
+    val rain: Rain,
+    val clouds: Clouds,
+    val name: String
 )
 
-data class Coord (
+data class Coord(
 
-    val lon : Double,
-    val lat : Double
+    val lon: Double,
+    val lat: Double
 )
 
-data class Weather (
+data class Weather(
 
-    val temp : Double,
-    val pressure : Int,
-    val humidity : Int
+    val temp: Double,
+    val pressure: Int,
+    val humidity: Int
 )
 
-data class Wind (
+data class Wind(
 
-    val speed : Double,
-    val deg : Int
+    val speed: Double,
+    val deg: Int
 )
 
-data class Rain (
+data class Rain(
 
-    @SerializedName("3h") val threeH : Int
+    @SerializedName("3h") val threeH: Int
 )
 
-data class Clouds (
+data class Clouds(
 
-    val cloudiness : Int
+    val cloudiness: Int
 )
